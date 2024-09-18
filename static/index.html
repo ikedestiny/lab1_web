@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'>
+    <title>Page Title</title>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <link href='main.css' media='screen' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<div id="header">
+    <div>
+        <h1>Ike Holy Destiny</h1>
+        <h1>P3230</h1>
+        <h1>Variant 374215</h1>
+    </div>
+    <div>
+        <h1 id="page-title">
+            Web Programming Lab 1
+        </h1>
+    </div>
+</div>
+
+<div class="main">
+    <div class="background"></div>
+    <form id="main-form" method="post">
+        <h1 class="cardLog" style="width: 10rem; margin-left: 10vw; margin-bottom: -2vw; color: var(--fontColor);">
+            Parameters</h1>
+        <div class="params">
+            <div class="xValues card">
+                <div class="cardLog"><h2>Select X</h2></div>
+                <label><i>-2</i><input checked id="-2" name="x" type="radio"></label>
+                <label>-1.5<input id="-1.5" name="x" type="radio"></label>
+                <label>-1<input id="-1" name="x" type="radio"></label>
+                <label>-0.5<input id="-0.5" name="x" type="radio"></label>
+                <label>0<input id="0" name="x" type="radio"></label>
+                <label>0.5<input id="0.5" name="x" type="radio"></label>
+                <label>1<input id="1" name="x" type="radio"></label>
+                <label>1.5<input id="1.5" name="x" type="radio"></label>
+                <label>2<input id="2" name="x" type="radio"></label>
+            </div>
+
+            <div class="card rValues">
+                <div class="cardLog"><h2>Select R</h2></div>
+                <button class="rButton">1</button>
+                <button class="rButton">1.5</button>
+                <button class="rButton">2</button>
+                <button class="rButton">2.5</button>
+                <button class="rButton">3</button>
+
+                <input id="currentR" placeholder="currentR" type="text" value="0">
+            </div>
+
+            <div class="card yValues">
+                <h2 class="cardLog">Enter Y</h2>
+                <input id="y" max="3" min="-3" type="number" value="0">
+            </div>
+        </div>
+        <button id="submitForm" type="submit">Submit</button>
+    </form>
+
+    <div>
+        <div class="svg plane">
+            <svg class="svg-graph " height="700" width="700">
+
+                <!-- x-axes -->
+                <line class="axis" stroke="black" x1="10" x2="680" y1="350" y2="350"></line>
+                <line class="arrowHead" stroke="black" x1="650" x2="680" y1="330" y2="350"></line>
+                <line class="arrowHead" stroke="black" x1="650" x2="680" y1="370" y2="350"></line>
+
+                <!-- y-axes -->
+                <line class="axis" stroke="black" x1="350" x2="350" y1="10" y2="680"></line>
+                <line class="arrowHead" stroke="black" x1="350" x2="330" y1="10" y2="30"></line>
+                <line class="arrowHead" stroke="black" x1="350" x2="370" y1="10" y2="30"></line>
+
+                <!-- coordinate lines -->
+
+                <line class="Xcoor" stroke="black" x1="82" x2="82" y1="340" y2="360"></line>
+                <line class="Xcoor" stroke="black" x1="216" x2="216" y1="340" y2="360"></line>
+                <line class="Xcoor" stroke="black" x1="484" x2="484" y1="340" y2="360"></line>
+                <line class="Xcoor" stroke="black" x1="618" x2="618" y1="340" y2="360"></line>
+
+                <line class="Ycoor" stroke="black" x1="340" x2="360" y1="82" y2="82"></line>
+                <line class="Ycoor" stroke="black" x1="340" x2="360" y1="216" y2="216"></line>
+                <line class="Ycoor" stroke="black" x1="340" x2="360" y1="484" y2="484"></line>
+                <line class="Ycoor" stroke="black" x1="340" x2="360" y1="618" y2="618"></line>
+
+                <Text class="xCoorText" x="670" y="330">x</Text>
+                <Text class="xCoorText" x="614" y="330">R</Text>
+                <Text class="xCoorText" x="480" y="330">R/2</Text>
+                <Text class="xCoorText" x="207" y="330">-R/2</Text>
+                <Text class="xCoorText" x="75" y="330">-R</Text>
+
+                <Text class="yCoorText" x="370" y="488">-R/2</Text>
+                <Text class="yCoorText" x="370" y="622">-R</Text>
+                <Text class="yCoorText" x="370" y="220">R/2</Text>
+                <Text class="yCoorText" x="370" y="86">R</Text>
+                <Text class="yCoorText" x="370" y="14">y</Text>
+
+                <!-- polygons -->
+
+                <polygon fill="blue" fill-opacity="0.2" points="350,350 350,82 484,82 484,350"></polygon>
+                <!--rectangle -->
+                <polygon fill="blue" fill-opacity="0.2" points="350,350 618,350 350,618"></polygon> <!--triangle-->
+
+                <!--the curve-->
+                <path
+                        d="
+                 M 216 350 
+                 S 220 220 350 216
+                 L 350 350 L 216 350
+    
+                 "
+                        fill="blue"
+                        fill-opacity="0.2"
+
+                />
+
+
+            </svg>
+        </div>
+
+        <div class="results">
+            <table id="resultTable">
+                <tr>
+                    <th>x</th>
+                    <th>y</th>
+                    <th>In Area</th>
+                    <th>Request Sent</th>
+                    <th>Response time</th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- add table for result here -->
+
+
+    <footer>
+        <div class="footer"><h1>--пока--</h1></div>
+    </footer>
+    <script defer src='main.js'></script>
+</body>
+</html>
