@@ -1,20 +1,32 @@
 const submitButton  = document.getElementById("submitForm");
 const rbuttons = document.querySelectorAll('.rButton')
-const xRadios = document.querySelectorAll('input[name="x"]')
-let xValue = -2;
+let xCheckedBoxes;
 const rValue = document.getElementById('currentR')
 const yvalue = document.querySelector('input[id=y]')
-let y = 0;
-const url = "helios.cs.ifmo.ru:28012/fcgi-bin/server-1.0-jar-with-dependencies.jar";
-
+let y = 1;
+const url = "/fcgi-bin/server-1.0-jar-with-dependencies.jar";
+const checked = document.querySelectorAll('input[type="checkbox"]:checked')
+xCheckedBoxes = Array.from(checked).map(x => x.id)
+const xList = document.querySelector('div[class="xValues card"]');
 
 setValues();
 
 
-
 submitButton.addEventListener('click',($event)=>{
-    const fullUrl = `${url}?r=${rValue.value}&y=${y}&x=${xValue}`;
     $event.preventDefault();
+        console.log(xCheckedBoxes)
+        xCheckedBoxes.forEach(checkedX => {
+            if(validateParams(checkedX,y,rValue.value)){
+                sendRequest(checkedX,y,rValue.value)
+            }else{
+                validateParams(checkedX,y,rValue.value);
+            }
+        })
+})
+
+
+
+function getCurrentTime(){
     const now = new Date();
 
     // Format the current time as a string
@@ -24,10 +36,63 @@ submitButton.addEventListener('click',($event)=>{
     // const miliseconds = now.getMiliseconds().toString().padStart(5,'00000')
     
     // Construct the time string
-    // const currentTime = `${hours}:${minutes}:${seconds}:${miliseconds}`;
-    const currentTime = now.toISOString()
+    const currentTime = `${hours}:${minutes}:${seconds}`;
+    // const currentTime = now.toISOString()
+
+    return currentTime;
+}
+
+function setValues(){
+
+    xList.addEventListener('change',($event)=>{
+        if ($event.target.type === 'checkbox') {
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked')
+            xCheckedBoxes = Array.from(checked).map(x => x.id)
+          }
+    })
+
+
+    rbuttons.forEach(
+        button =>{
+            button.addEventListener(
+                'click', ($event)=>{
+                        $event.preventDefault();
+                        rValue.value = button.textContent;
+                }
+            );
+        }
+    );  
+    yvalue.addEventListener('change',()=>{
+        y = yvalue.value
+    })
+}
+
+function validateParams(x,y,r){
+    let valid = true;
+    if(x>2 || x<-2){
+        valid = false;
+        document.querySelector('.xValues').style.backgroundColor='red';
+    }else if(y<-3 || y>3){
+        valid = false;
+        document.querySelector('.yValues').style.backgroundColor='red';
+    }else if(r<1 || r>3){
+        valid = false;
+        document.querySelector('.rValues').style.backgroundColor='red';
+    }else{
+        document.querySelector('.xValues').style.backgroundColor='#6670b3';
+        document.querySelector('.yValues').style.backgroundColor='#6670b3';
+        document.querySelector('.rValues').style.backgroundColor='#6670b3';
+    }
+
+    return valid;
+}
+
+function sendRequest(x,yi,r){
+    const fullUrl = `${url}?r=${r}&y=${yi}&x=${x}`;
+    let requestSent = getCurrentTime();
+    let current = Date.now();
     
-fetch(fullUrl)
+    fetch(fullUrl)
     .then(response => response.json())
     .then(answer => {
         console.log(answer)
@@ -43,9 +108,10 @@ fetch(fullUrl)
                                              <tr>
                                                 <td>${answer.x}</td>
                                                 <td>${answer.y}</td>
+                                                <td>${answer.r}</td>
                                                 <td>${answer.inArea}</td>
-                                                <td>${currentTime}</td>
-                                                <td>${answer.responseTime}</td>
+                                                <td>${requestSent}</td>
+                                                <td>${Date.now()-current}</td>
                                             </tr>
                                     `
 
@@ -54,41 +120,5 @@ fetch(fullUrl)
         console.log(answer.responseTime)
 
     })
-    .catch(error => console.error(error));
-
-
-
-})
-
-
-
-
-
-
-
-
-function setValues(){
-    rbuttons.forEach(
-        button =>{
-            button.addEventListener(
-                'click', ($event)=>{
-                        $event.preventDefault();
-                        rValue.value = button.textContent;
-                }
-            );
-        }
-    );
-    
-    xRadios.forEach(
-        radio =>{
-    
-            radio.addEventListener('click',()=>{
-                xValue = radio.id
-            })
-        }
-    )
-    
-    yvalue.addEventListener('change',()=>{
-        y = yvalue.value
-    })
+    .catch(error => console.log(error));
 }

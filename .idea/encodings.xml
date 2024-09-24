@@ -3,8 +3,5 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="jar://$MAVEN_REPOSITORY$/fcig/fastcig-lib/1.0.0/fastcig-lib-1.0.0.jar!/com/fastcgi/FCGIInputStream.class" charset="GBK" />
-    <file url="jar://$MAVEN_REPOSITORY$/fcig/fastcig-lib/1.0.0/fastcig-lib-1.0.0.jar!/com/fastcgi/FCGIInterface.class" charset="UTF-16BE" />
-    <file url="jar://$MAVEN_REPOSITORY$/fcig/fastcig-lib/1.0.0/fastcig-lib-1.0.0.jar!/com/fastcgi/FCGIMessage.class" charset="UTF-16BE" />
   </component>
 </project>

@@ -8,8 +8,9 @@ import java.time.LocalDateTime;
 public class RequestChecker {
     public static ServerResponse checkRequest(ClientRequest request){
         if (isInSector(request)||isInRectangle(request)||isInTriangle(request)){
-            return new ServerResponse(request.getX(), request.getY(), true, LocalDateTime.now().toLocalTime().toString());
-        }else return new ServerResponse(request.getX(), request.getY(), false,LocalDateTime.now().toLocalTime().toString());
+            return new ServerResponse(request.getX(), request.getY(), true, LocalDateTime.now().toLocalTime().toString(), request.getR());
+        } else
+            return new ServerResponse(request.getX(), request.getY(), false, LocalDateTime.now().toLocalTime().toString(), request.getR());
     }
 
 

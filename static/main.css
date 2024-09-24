@@ -3,7 +3,12 @@ html{
     /* --themeColor: rgb(227, 190, 190); */
     /* --fontColor: rgb(117, 111, 105); */
     --fontColor: #0a134d;
-    --themeColor: #6670b3;
+    --themeColor:#6670b3 ;
+
+    background-image: url(img/back1.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
 
 }
 
@@ -14,25 +19,36 @@ html{
     background-image: url(img/back1.png);
     background-size: cover;
     background-position: center;
+    background-repeat: repeat;
     filter: blur(10px);
     z-index: -1;    }
 
 #header{
     background-color: var(--themeColor);
     width: 100%;
-    height: 20vh;
-    padding-left: 100px;
+    height: auto;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    position: fixed;
     display: flex;
     font-family:  "Courier New", monospace;
     /* flex-direction: column; */
     color: var(--fontColor);
-    align-items: flex-start;
-
 
      #page-title{
-        font-size: 5rem;
-        margin-left: 20vw;
+        font-size: 4rem;
+        margin-top: 1vh;
+        width: 60vw;
+        height: 5rem;
+        margin-left: 25vw;
+        
 
+    }
+
+
+    .introDiv {
+        font-size: 50%;
+        width: 20wv;
     }
 
     
@@ -52,7 +68,9 @@ html{
     }
 
     th,td{
-        padding: 1rem;
+        padding-left: 0.3rem;
+        width: 3vw;
+        color: rgb(45, 45, 183);
     }
 
     
@@ -85,39 +103,67 @@ html{
     padding-left: 5px;
     padding-right: 5px;
     margin-right:-4rem ;
-    box-shadow: 5px 5px 20px -2px rgba(0,0,0,0.2);
     margin-bottom: 1rem;
     
 }
 
 
-.params{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
 
 .main{
     display: flex;
     margin-left: 4vw;
-    
+    padding-top: 4vh;
+    justify-content: flex-start;
+
+    #main-form {
+        margin: 20vh;
+
+        .params{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: -10rem;
+            margin-top: -3rem;
+
+           
+        }
+        
+    }
+    #ParamsSecTitle{
+        font-size: 3rem;
+        background: linear-gradient(var(--fontColor), #9198e5);
+        width: 25vw;
+        margin-top: -3rem;
+        margin-left: -6rem;
+    }
 
     .xValues,.rValues,.yValues{
         background-color: var(--themeColor);  
-        font-size: 1.5rem; 
+        font-size: 0.7rem; 
+        width: 3vw;
+        padding-left: 2rem;
+        
     }
+    
+    .xValues{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+
+    
 
     
     .rButton{
         width: 5rem;
-        border: 3px solid var(--fontColor);
         margin-right: -2.5rem;
         margin-top: 3px;
     }
 
+    
     .rButton:hover{
-        background-color: aqua;
+        background-color: var(--themeColor);
     }
 
     #submitForm{
@@ -132,6 +178,11 @@ html{
 
     
 }
+button{
+    border: 2px solid var(--fontColor);
+    border-radius: 5px;
+}
+
 
 #currentR{
     width: 6rem;
@@ -140,9 +191,9 @@ html{
 
 
 .plane{
-    margin-top: 2rem;
+    margin-top: 20vh;
     background-color: var(--themeColor);
-    margin-left: 17vw;
+    margin-left: auto;
 
     .svg-graph{
         background-color: var(--themeColor);
@@ -159,4 +210,5 @@ html{
     background-color: var(--themeColor);
     color: var(--fontColor);
     text-align: center;
+    height: 7vh;
   }
